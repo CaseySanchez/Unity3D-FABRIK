@@ -11,10 +11,6 @@ public class FABRIK : MonoBehaviour
     private List<FABRIKChain> chains = new List<FABRIKChain>();
     private List<FABRIKChain> endChains = new List<FABRIKChain>();
 
-    public virtual void OnFABRIK()
-    {
-    }
-
     public void Awake()
     {
         rootObject = new GameObject("FABRIK-Root-" + transform.name);
@@ -42,6 +38,10 @@ public class FABRIK : MonoBehaviour
         Solve();
     }   
 
+    public virtual void OnFABRIK()
+    {
+    }
+    
     public void Solve()
     {
         // We must iterate by layer in the first stage, working from target(s) to root
