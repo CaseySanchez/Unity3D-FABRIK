@@ -5,8 +5,20 @@ using System.Collections;
 [CustomEditor(typeof(FABRIKEffector))]
 public class FABRIKEffectorEditor : Editor
 {
+    private Quaternion rotation;
+
+    public void OnEnable()
+    {
+        SerializedObject serializedObject = new SerializedObject(target);
+        SerializedProperty axisConstraintProperty = serializedObject.FindProperty("axisConstraint");
+
+        rotation = Quaternion.LookRotation(axisConstraintProperty.vector3Value);
+    }
+
     public override void OnInspectorGUI()
     {
+        bool modified = false;
+
         DrawDefaultInspector();
 
         SerializedObject serializedObject = new SerializedObject(target);
@@ -15,6 +27,7 @@ public class FABRIKEffectorEditor : Editor
 
         SerializedProperty swingConstraintProperty = serializedObject.FindProperty("swingConstraint");
         SerializedProperty twistConstraintProperty = serializedObject.FindProperty("twistConstraint");
+        SerializedProperty axisConstraintProperty = serializedObject.FindProperty("axisConstraint");
 
         bool swingToggle = EditorGUILayout.Toggle("Swing Constraint", !float.IsNaN(swingConstraintProperty.floatValue));
 
@@ -34,6 +47,8 @@ public class FABRIKEffectorEditor : Editor
             swingConstraint = float.NaN;
         }
 
+        modified = modified || swingConstraint != swingConstraintProperty.floatValue;
+
         bool twistToggle = EditorGUILayout.Toggle("Twist Constraint", !float.IsNaN(twistConstraintProperty.floatValue));
 
         float twistConstraint;
@@ -52,7 +67,9 @@ public class FABRIKEffectorEditor : Editor
             twistConstraint = float.NaN;
         }
 
-        if (swingConstraint != swingConstraintProperty.floatValue || twistConstraint != twistConstraintProperty.floatValue)
+        modified = modified || twistConstraint != twistConstraintProperty.floatValue;
+
+        if (modified)
         {
             swingConstraintProperty.floatValue = swingConstraint;
             twistConstraintProperty.floatValue = twistConstraint;
@@ -68,41 +85,24 @@ public class FABRIKEffectorEditor : Editor
         FABRIKEffector effector = target as FABRIKEffector;
         Transform transform = effector.transform;
 
-        if (transform.parent != null && transform.parent.parent != null)
+        EditorGUI.BeginChangeCheck();
+
+        Quaternion new_rotation = Handles.RotationHandle(rotation, transform.position);
+
+        Handles.ArrowHandleCap(0, transform.position, new_rotation, 1.0F, EventType.Repaint);
+
+        if (EditorGUI.EndChangeCheck())
         {
+            rotation = new_rotation;
 
-            // Take our world-space direction and world-space up vector of the constraining rotation
-            // Multiply this by the inverse of the constraining rotation to derive a local rotation
-            Quaternion rotation = Quaternion.Inverse(transform.parent.parent.rotation) * Quaternion.LookRotation(transform.localPosition, transform.parent.rotation * Vector3.up);
+            SerializedObject serializedObject = new SerializedObject(target);
+            SerializedProperty axisConstraintProperty = serializedObject.FindProperty("axisConstraint");
 
-            Quaternion swing, twist;
+            axisConstraintProperty.vector3Value = new_rotation * Vector3.forward;
 
-            // Decompose our local rotation to swing-twist about the forward vector of the constraining rotation
-            rotation.Decompose(transform.parent.rotation * Vector3.forward, out swing, out twist);
-            
-            Handles.color = new Color(1.0f, 0.8f, 0.6f, 0.2f);
-            Handles.DrawSolidArc(transform.parent.position, 
-                transform.parent.parent.rotation * swing * Vector3.right, 
-                transform.parent.parent.rotation * swing * Quaternion.AngleAxis(-effector.swingConstraint * 0.5F, swing * Vector3.right) * Vector3.forward, effector.swingConstraint, 5.0f);
+            serializedObject.ApplyModifiedProperties();
 
-            Handles.color = new Color(0.6f, 0.8f, 1.0f, 0.2f);
-            Handles.DrawSolidArc(transform.parent.position, 
-                transform.parent.parent.rotation * twist * Vector3.right,
-                transform.parent.parent.rotation * twist * Quaternion.AngleAxis(-effector.twistConstraint * 0.5F, twist * Vector3.right) * Vector3.forward, effector.twistConstraint, 5.0f);
-
-            // Constrain the swing and twist quaternions
-            if (effector.SwingConstrained)
-            {
-                swing = swing.Constrain(effector.swingConstraint * Mathf.Deg2Rad);
-            }
-
-            if (effector.TwistConstrained)
-            {
-                twist = twist.Constrain(effector.twistConstraint * Mathf.Deg2Rad);
-            }
-
-            // Multiply the constrained swing-twist by our constraining rotation to get a world-space rotation
-            //transform.position = transform.parent.position + transform.parent.parent.rotation * swing * twist * Vector3.forward * transform.localPosition.magnitude;
+            AssetDatabase.SaveAssets();
         }
     }
 }
