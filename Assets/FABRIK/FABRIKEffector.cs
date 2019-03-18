@@ -6,6 +6,9 @@ public class FABRIKEffector : MonoBehaviour
     public float weight = 1.0F;
 
     [HideInInspector]
+    public Vector3 axisConstraint = Vector3.forward;
+
+    [HideInInspector]
     public float swingConstraint = float.NaN;
 
     [HideInInspector]
@@ -70,7 +73,7 @@ public class FABRIKEffector : MonoBehaviour
                 Quaternion swing, twist;
 
                 // Decompose our local rotation to swing-twist about the forward vector of the constraining rotation
-                rotation.Decompose(parent.Rotation * Vector3.forward, out swing, out twist);
+                rotation.Decompose(parent.Rotation * axisConstraint, out swing, out twist);
 
                 // Constrain the swing and twist quaternions
                 if (SwingConstrained)
