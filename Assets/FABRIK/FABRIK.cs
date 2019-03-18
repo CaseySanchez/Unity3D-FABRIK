@@ -40,22 +40,11 @@ public class FABRIK : MonoBehaviour
 
     public void Awake()
     {
-        Quaternion q = Quaternion.LookRotation(Vector3.right, Vector3.up);
-
-        Debug.Log("Forward = " + (q * Vector3.forward));
-        Debug.Log("Right = " + (q * Vector3.right));
-        Debug.Log("Up = " + (q * Vector3.up));
-
         // Load our IK system from the root transform
         rootChain = LoadSystem(transform);
 
         // Inversely sort by layer, greater-first
         chains.Sort(delegate (FABRIKChain x, FABRIKChain y) { return y.Layer.CompareTo(x.Layer); });
-
-        foreach (var key in endChains)
-        {
-            Debug.Log(key);
-        }
     }
 
     private FABRIKChain LoadSystem(Transform transform, FABRIKChain parent = null, int layer = 0)
