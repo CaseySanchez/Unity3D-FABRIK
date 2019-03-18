@@ -14,7 +14,7 @@ public class FABRIKChain
 
     private bool isEndChain;
 
-    public float threshold = 0.1F;
+    public float sqrThreshold = 0.01F;
 
     public FABRIKChain(FABRIKChain parent, List<FABRIKEffector> effectors, int layer)
     {
@@ -27,8 +27,19 @@ public class FABRIKChain
         // ... where the offset reflects its positioning within the CURRENT end effector's bounding box
         // e.g. Vector3.zero is centered in the box
         if(this.isEndChain)
-		{
-			effectors.Add(CreateEndEffector(endEffector));
+        {
+            //MeshFilter meshFilter = endEffector.gameObject.GetComponent<MeshFilter>();
+
+            //Bounds bounds = meshFilter.mesh.bounds;
+
+            GameObject gameObject = new GameObject();
+
+            gameObject.hideFlags = HideFlags.DontSave;
+
+            gameObject.transform.parent = endEffector.transform;
+            gameObject.transform.localPosition = endEffector.offset;//bounds.center + Vector3.Scale(bounds.extents, endEffector.offset);
+
+            effectors.Add(gameObject.AddComponent<FABRIKEffector>());
 		}
 
         // Now that we have all effectors accounted for, calculate the length of each segment
@@ -50,43 +61,18 @@ public class FABRIKChain
         }
     }
 
-    private FABRIKEffector CreateEndEffector(FABRIKEffector parent)
-    {
-        MeshFilter meshFilter = parent.gameObject.GetComponent<MeshFilter>();
-
-        Bounds bounds = meshFilter.mesh.bounds;
-
-        GameObject gameObject = new GameObject();
-
-        gameObject.hideFlags = HideFlags.DontSave;
-
-        gameObject.transform.parent = parent.transform;
-        gameObject.transform.localPosition = bounds.center + Vector3.Scale(bounds.extents, parent.offset);
-
-        foreach (Transform child in parent.transform)
-        {
-            if (child != gameObject.transform)
-            {
-                child.parent = gameObject.transform;
-            }
-        }
-
-        return gameObject.AddComponent<FABRIKEffector>();
-    }
-
     public void Backward()
     {
         // Store the original position to be reset below
-        // This is done to calculate the Forward iteration
         Vector3 origin = effectors[0].Position;
 
         // Sub-base, average for centroid
-        if (children.Count != 0)
+        if (children.Count > 1)
         {
             Target /= (float)children.Count;
         }
 
-        if (Vector3.Distance(EndEffector.Position, Target) > threshold)
+        if ((EndEffector.Position - Target).sqrMagnitude > sqrThreshold)
         {
             // Set the end effector Position to Target to calculate the Backward iteration
             EndEffector.Position = Target;
@@ -113,12 +99,14 @@ public class FABRIKChain
     {
         if (parent != null)
         {
-            Vector3 direction = (effectors[1].Position - effectors[0].Position).normalized;
+            effectors[1].Position = effectors[0].Position + effectors[0].Rotation * Vector3.forward * effectors[0].Length;
+            /*Vector3 direction = (effectors[1].Position - effectors[0].Position).normalized;
 
             effectors[1].Position = effectors[0].transform.position + direction * effectors[0].Length;
 
-            effectors[0].Rotation = Quaternion.LookRotation(direction);
+            effectors[0].Rotation = Quaternion.LookRotation(direction);*/
         }
+
 
         for (int i = 2; i < effectors.Count; i++)
         {
@@ -135,20 +123,16 @@ public class FABRIKChain
             Target = Vector3.zero;
 
             // In order to constrain a sub-base end effector, we must average the directions of its children
-            Vector3 average = Vector3.zero;
+            Vector3 direction = Vector3.zero;
 
             foreach(FABRIKChain child in children)
             {
-                Vector3 direction = (child.effectors[1].Position - EndEffector.Position).normalized;
-
-                child.effectors[1].Position = EndEffector.Position + direction * EndEffector.Length;         
-
-                average += direction;
+                direction += Vector3.Normalize(child.effectors[1].Position - EndEffector.Position);
             }
 
-            average /= (float)children.Count;
+            direction /= (float)children.Count;
 
-            EndEffector.ApplyConstraints(average);
+            EndEffector.ApplyConstraints(direction);
         }
     }
 
