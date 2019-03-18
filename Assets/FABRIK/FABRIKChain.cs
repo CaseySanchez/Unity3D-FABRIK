@@ -40,7 +40,7 @@ public class FABRIKChain
             gameObject.transform.localPosition = endEffector.offset;//bounds.center + Vector3.Scale(bounds.extents, endEffector.offset);
 
             effectors.Add(gameObject.AddComponent<FABRIKEffector>());
-		}
+	}
 
         // Now that we have all effectors accounted for, calculate the length of each segment
         for (int i = 1; i < effectors.Count; i++)
@@ -100,13 +100,7 @@ public class FABRIKChain
         if (parent != null)
         {
             effectors[1].Position = effectors[0].Position + effectors[0].Rotation * Vector3.forward * effectors[0].Length;
-            /*Vector3 direction = (effectors[1].Position - effectors[0].Position).normalized;
-
-            effectors[1].Position = effectors[0].transform.position + direction * effectors[0].Length;
-
-            effectors[0].Rotation = Quaternion.LookRotation(direction);*/
         }
-
 
         for (int i = 2; i < effectors.Count; i++)
         {
