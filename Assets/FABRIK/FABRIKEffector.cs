@@ -39,6 +39,22 @@ public class FABRIKEffector : MonoBehaviour
         set;
     }
 
+    public float SwingConstraint
+    {
+        get
+        {
+            return swingConstraint * 0.5F * Mathf.Deg2Rad;
+        }
+    }
+
+    public float TwistConstraint
+    {
+        get
+        {
+            return twistConstraint * 0.5F * Mathf.Deg2Rad;
+        }
+    }
+
     public bool SwingConstrained
     {
         get
@@ -62,7 +78,7 @@ public class FABRIKEffector : MonoBehaviour
             // Neither axis is constrained; set to LookRotation
             if (!SwingConstrained && !TwistConstrained)
             {
-                Rotation = Quaternion.LookRotation(direction, parent.transform.up);
+                Rotation = Quaternion.LookRotation(direction, parent.Rotation * Vector3.up);
             }
             else
             {
@@ -72,18 +88,18 @@ public class FABRIKEffector : MonoBehaviour
 
                 Quaternion swing, twist;
 
-                // Decompose our local rotation to swing-twist about the forward vector of the constraining rotation
-                rotation.Decompose(parent.Rotation * axisConstraint, out swing, out twist);
+                // Decompose our local rotation to swing-twist about our desired axis
+                rotation.Decompose(axisConstraint, out swing, out twist);
 
                 // Constrain the swing and twist quaternions
                 if (SwingConstrained)
                 {
-                    swing = swing.Constrain(swingConstraint * Mathf.Deg2Rad);
+                    swing = swing.Constrain(SwingConstraint);
                 }
 
                 if (TwistConstrained)
                 {
-                    twist = twist.Constrain(twistConstraint * Mathf.Deg2Rad);
+                    twist = twist.Constrain(TwistConstraint);
                 }
 
                 // Multiply the constrained swing-twist by our constraining rotation to get a world-space rotation
