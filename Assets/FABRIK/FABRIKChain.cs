@@ -40,7 +40,7 @@ public class FABRIKChain
             gameObject.transform.localPosition = endEffector.offset;//bounds.center + Vector3.Scale(bounds.extents, endEffector.offset);
 
             effectors.Add(gameObject.AddComponent<FABRIKEffector>());
-	}
+		}
 
         // Now that we have all effectors accounted for, calculate the length of each segment
         for (int i = 1; i < effectors.Count; i++)
@@ -64,7 +64,7 @@ public class FABRIKChain
     public void Backward()
     {
         // Store the original position to be reset below
-        Vector3 origin = effectors[0].Position;
+        Vector3 origin = BaseEffector.Position;
 
         // Sub-base, average for centroid
         if (children.Count > 1)
@@ -88,19 +88,20 @@ public class FABRIKChain
         // Increment parent sub-base's target, to be averaged as above
         if (parent != null)
         {
-            parent.Target += effectors[0].Position * effectors[0].weight;// * 0.5f;
+            parent.Target += BaseEffector.Position * EndEffector.Weight;// * 0.5f;
         }
 
         // Reset initial effector to origin
-        effectors[0].Position = origin;
+        BaseEffector.Position = origin;
     }
 
     public void Forward()
     {
         if (parent != null)
         {
-            effectors[1].Position = effectors[0].Position + effectors[0].Rotation * Vector3.forward * effectors[0].Length;
+            effectors[1].Position = BaseEffector.Position + BaseEffector.Rotation * Vector3.forward * BaseEffector.Length;
         }
+
 
         for (int i = 2; i < effectors.Count; i++)
         {
