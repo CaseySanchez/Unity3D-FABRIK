@@ -21,6 +21,14 @@ public class FABRIKEffector : MonoBehaviour
 
     private FABRIKEffector parent = null;
 
+    public float Weight
+    {
+        get
+        {
+            return weight;
+        }
+    }
+
     public Vector3 Position
     {
         get;
@@ -114,7 +122,7 @@ public class FABRIKEffector : MonoBehaviour
 
     void Awake()
     {
-        parent = transform.parent.gameObject.GetComponent<FABRIKEffector>();
+        parent = transform.parent != null ? transform.parent.gameObject.GetComponent<FABRIKEffector>() : null;
 
         Position = transform.position;
     }
