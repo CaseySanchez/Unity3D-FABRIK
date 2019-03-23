@@ -64,7 +64,7 @@ public class FABRIKChain
     public void Backward()
     {
         // Store the original position to be reset below
-        Vector3 origin = BaseEffector.Position;
+        Vector3 origin = parent == null ? BaseEffector.transform.position : BaseEffector.Position;
 
         // Sub-base, average for centroid
         if (children.Count > 1)
@@ -97,11 +97,7 @@ public class FABRIKChain
 
     public void Forward()
     {
-        if (parent != null)
-        {
-            effectors[1].Position = BaseEffector.Position + BaseEffector.Rotation * Vector3.forward * BaseEffector.Length;
-        }
-
+        effectors[1].Position = BaseEffector.Position + BaseEffector.Rotation * Vector3.forward * BaseEffector.Length;
 
         for (int i = 2; i < effectors.Count; i++)
         {
