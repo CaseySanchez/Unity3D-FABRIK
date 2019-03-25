@@ -21,6 +21,9 @@ public class FABRIKEffector : MonoBehaviour
 
     private FABRIKEffector parent = null;
 
+    private Vector3 position;
+    private Quaternion rotation;
+
     public float Weight
     {
         get
@@ -31,14 +34,28 @@ public class FABRIKEffector : MonoBehaviour
 
     public Vector3 Position
     {
-        get;
-        set;
+        get
+        {
+            return parent != null ? position : transform.position;
+        }
+
+        set
+        {
+            position = value;
+        }
     }
 
     public Quaternion Rotation
     {
-        get;
-        set;
+        get
+        {
+            return parent != null ? rotation : transform.rotation;
+        }
+
+        set
+        {
+            rotation = value;
+        }
     }
 
     public float Length
@@ -125,6 +142,7 @@ public class FABRIKEffector : MonoBehaviour
         parent = transform.parent != null ? transform.parent.gameObject.GetComponent<FABRIKEffector>() : null;
 
         Position = transform.position;
+        Rotation = transform.rotation;
     }
 
     public void UpdateTransform()
