@@ -45,6 +45,11 @@ public class FABRIK : MonoBehaviour
 
         // Inversely sort by layer, greater-first
         chains.Sort(delegate (FABRIKChain x, FABRIKChain y) { return y.Layer.CompareTo(x.Layer); });
+
+        foreach(FABRIKChain chain in chains)
+        {
+            chain.CalculateSummedWeight();
+        }
     }
 
     private FABRIKChain LoadSystem(Transform transform, FABRIKChain parent = null, int layer = 0)
