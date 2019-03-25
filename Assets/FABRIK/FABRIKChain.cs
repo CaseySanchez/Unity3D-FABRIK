@@ -14,6 +14,8 @@ public class FABRIKChain
 
     private bool isEndChain;
 
+    private float summed_weight;
+
     public float sqrThreshold = 0.01F;
 
     public FABRIKChain(FABRIKChain parent, List<FABRIKEffector> effectors, int layer)
@@ -39,7 +41,11 @@ public class FABRIKChain
             gameObject.transform.parent = endEffector.transform;
             gameObject.transform.localPosition = endEffector.offset;//bounds.center + Vector3.Scale(bounds.extents, endEffector.offset);
 
-            effectors.Add(gameObject.AddComponent<FABRIKEffector>());
+            FABRIKEffector effector = gameObject.AddComponent<FABRIKEffector>();
+
+            effector.weight = effectors[effectors.Count - 1].weight;
+
+            effectors.Add(effector);
 		}
 
         // Now that we have all effectors accounted for, calculate the length of each segment
@@ -61,15 +67,25 @@ public class FABRIKChain
         }
     }
 
+    public void CalculateSummedWeight()
+    {
+        summed_weight = 0.0F;
+
+        foreach (FABRIKChain child in children)
+        {
+            summed_weight += child.EndEffector.Weight;
+        }
+    }
+    
     public void Backward()
     {
         // Store the original position to be reset below
-        Vector3 origin = parent == null ? BaseEffector.transform.position : BaseEffector.Position;
+        Vector3 origin = BaseEffector.Position;
 
         // Sub-base, average for centroid
         if (children.Count > 1)
         {
-            Target /= (float)children.Count;
+            Target /= summed_weight;
         }
 
         if ((EndEffector.Position - Target).sqrMagnitude > sqrThreshold)
@@ -88,7 +104,7 @@ public class FABRIKChain
         // Increment parent sub-base's target, to be averaged as above
         if (parent != null)
         {
-            parent.Target += BaseEffector.Position * EndEffector.Weight;// * 0.5f;
+            parent.Target += BaseEffector.Position * EndEffector.Weight;
         }
 
         // Reset initial effector to origin
