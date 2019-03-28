@@ -12,43 +12,12 @@ public class FABRIKChain
 
     private int layer;
 
-    private bool isEndChain;
-
     private float summed_weight;
 
     public float sqrThreshold = 0.01F;
 
     public FABRIKChain(FABRIKChain parent, List<FABRIKEffector> effectors, int layer)
     {
-        FABRIKEffector endEffector = effectors[effectors.Count - 1];
-
-        this.isEndChain = endEffector.transform.childCount == 0;
-
-        // If the current endEffector has no children, then the chain is considered an "end chain"
-        // Add a NEW end effector that is offset from the CURRENT end effector's position ...
-        // ... where the offset reflects its positioning within the CURRENT end effector's bounding box
-        // e.g. Vector3.zero is centered in the box
-        if(this.isEndChain)
-        {
-            //MeshFilter meshFilter = endEffector.gameObject.GetComponent<MeshFilter>();
-
-            //Bounds bounds = meshFilter.mesh.bounds;
-
-            GameObject gameObject = new GameObject();
-
-            gameObject.hideFlags = HideFlags.DontSave;
-
-            gameObject.transform.parent = endEffector.transform;
-            gameObject.transform.localPosition = endEffector.offset;//bounds.center + Vector3.Scale(bounds.extents, endEffector.offset);
-
-            FABRIKEffector effector = gameObject.AddComponent<FABRIKEffector>();
-
-            effector.weight = effectors[effectors.Count - 1].weight;
-
-            effectors.Add(effector);
-		}
-
-        // Now that we have all effectors accounted for, calculate the length of each segment
         for (int i = 1; i < effectors.Count; i++)
         {
             effectors[i - 1].Length = Vector3.Distance(effectors[i].transform.position, effectors[i - 1].transform.position);
@@ -162,7 +131,7 @@ public class FABRIKChain
     {
         get
         {
-            return isEndChain;
+            return EndEffector.transform.childCount == 0;
         }
     }
 

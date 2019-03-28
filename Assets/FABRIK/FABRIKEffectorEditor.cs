@@ -6,13 +6,19 @@ using System.Collections;
 public class FABRIKEffectorEditor : Editor
 {
     private Quaternion rotation;
+    private bool editingAxis;
 
     public void OnEnable()
     {
-        SerializedObject serializedObject = new SerializedObject(target);
-        SerializedProperty axisConstraintProperty = serializedObject.FindProperty("axisConstraint");
+        FABRIKEffector effector = target as FABRIKEffector;
+        Transform transform = effector.transform;
 
-        rotation = Quaternion.LookRotation(axisConstraintProperty.vector3Value);
+        SerializedObject serializedObject = new SerializedObject(target);
+        SerializedProperty upAxisConstraintProperty = serializedObject.FindProperty("upAxisConstraint");
+        SerializedProperty forwardAxisConstraintProperty = serializedObject.FindProperty("forwardAxisConstraint");
+
+        rotation = transform.rotation * Quaternion.LookRotation(forwardAxisConstraintProperty.vector3Value, upAxisConstraintProperty.vector3Value);
+        editingAxis = false;
     }
 
     public override void OnInspectorGUI()
@@ -27,7 +33,6 @@ public class FABRIKEffectorEditor : Editor
 
         SerializedProperty swingConstraintProperty = serializedObject.FindProperty("swingConstraint");
         SerializedProperty twistConstraintProperty = serializedObject.FindProperty("twistConstraint");
-        SerializedProperty axisConstraintProperty = serializedObject.FindProperty("axisConstraint");
 
         bool swingToggle = EditorGUILayout.Toggle("Swing Constraint", !float.IsNaN(swingConstraintProperty.floatValue));
 
@@ -78,31 +83,54 @@ public class FABRIKEffectorEditor : Editor
 
             AssetDatabase.SaveAssets();
         }
+
+        if(GUILayout.Button("Edit Axis of Constraint"))
+        {
+            Tools.current = Tool.None;
+
+            editingAxis = true;
+        }
     }
 
     public void OnSceneGUI()
     {
-        FABRIKEffector effector = target as FABRIKEffector;
-        Transform transform = effector.transform;
-
-        EditorGUI.BeginChangeCheck();
-
-        Quaternion new_rotation = Handles.RotationHandle(rotation, transform.position);
-
-        Handles.ArrowHandleCap(0, transform.position, new_rotation, 1.0F, EventType.Repaint);
-
-        if (EditorGUI.EndChangeCheck())
+        if (editingAxis)
         {
-            rotation = new_rotation;
+            if (Tools.current != Tool.None)
+            {
+                editingAxis = false;
+            }
+            else
+            {
+                FABRIKEffector effector = target as FABRIKEffector;
+                Transform transform = effector.transform;
 
-            SerializedObject serializedObject = new SerializedObject(target);
-            SerializedProperty axisConstraintProperty = serializedObject.FindProperty("axisConstraint");
+                EditorGUI.BeginChangeCheck();
 
-            axisConstraintProperty.vector3Value = new_rotation * Vector3.forward;
+                Quaternion new_rotation = Handles.RotationHandle(rotation, transform.position);
 
-            serializedObject.ApplyModifiedProperties();
+                Handles.color = Handles.yAxisColor;
+                Handles.ArrowHandleCap(0, transform.position, Quaternion.LookRotation(new_rotation * Vector3.up), 0.5F, EventType.Repaint);
 
-            AssetDatabase.SaveAssets();
+                Handles.color = Handles.zAxisColor;
+                Handles.ArrowHandleCap(0, transform.position, new_rotation, 1.0F, EventType.Repaint);
+
+                if (EditorGUI.EndChangeCheck())
+                {
+                    rotation = new_rotation;
+
+                    SerializedObject serializedObject = new SerializedObject(target);
+                    SerializedProperty upAxisConstraintProperty = serializedObject.FindProperty("upAxisConstraint");
+                    SerializedProperty forwardAxisConstraintProperty = serializedObject.FindProperty("forwardAxisConstraint");
+
+                    upAxisConstraintProperty.vector3Value = Quaternion.Inverse(transform.rotation) * new_rotation * Vector3.up;
+                    forwardAxisConstraintProperty.vector3Value = Quaternion.Inverse(transform.rotation) * new_rotation * Vector3.forward;
+
+                    serializedObject.ApplyModifiedProperties();
+
+                    AssetDatabase.SaveAssets();
+                }
+            }
         }
     }
 }

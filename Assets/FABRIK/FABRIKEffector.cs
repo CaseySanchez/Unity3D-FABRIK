@@ -6,19 +6,17 @@ public class FABRIKEffector : MonoBehaviour
     public float weight = 1.0F;
 
     [HideInInspector]
-    public Vector3 axisConstraint = Vector3.forward;
+    public Vector3 upAxisConstraint = Vector3.up;
+
+    [HideInInspector]
+    public Vector3 forwardAxisConstraint = Vector3.forward;
 
     [HideInInspector]
     public float swingConstraint = float.NaN;
 
     [HideInInspector]
     public float twistConstraint = float.NaN;
-
-    [Space]
-    [Header("\"Offset\" is only used for end effectors")]
-    [Space]
-    public Vector3 offset = Vector3.zero;
-
+    
     private FABRIKEffector parent = null;
 
     private Vector3 position;
@@ -109,13 +107,15 @@ public class FABRIKEffector : MonoBehaviour
             {
                 // Take our world-space direction and world-space up vector of the constraining rotation
                 // Multiply this by the inverse of the constraining rotation to derive a local rotation
-                Quaternion rotation = Quaternion.Inverse(parent.Rotation) * Quaternion.LookRotation(direction, parent.Rotation * Vector3.up);
+                Vector3 upAxis = parent.Rotation * upAxisConstraint;
+                Quaternion rotation_global = Quaternion.LookRotation(parent.Rotation * forwardAxisConstraint, upAxis);
+                Quaternion rotation_local = Quaternion.Inverse(rotation_global) * Quaternion.LookRotation(direction, upAxis);
 
                 Quaternion swing, twist;
 
-                // Decompose our local rotation to swing-twist about our desired axis
-                rotation.Decompose(axisConstraint, out swing, out twist);
-
+                // Decompose our local rotation to swing-twist about the forward vector of the constraining rotation
+                rotation_local.Decompose(Vector3.forward, out swing, out twist);
+                
                 // Constrain the swing and twist quaternions
                 if (SwingConstrained)
                 {
@@ -128,7 +128,7 @@ public class FABRIKEffector : MonoBehaviour
                 }
 
                 // Multiply the constrained swing-twist by our constraining rotation to get a world-space rotation
-                Rotation = parent.Rotation * swing * twist;
+                Rotation = rotation_global * swing * twist;
             }
         }
         else

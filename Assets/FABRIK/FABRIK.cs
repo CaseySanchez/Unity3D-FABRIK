@@ -23,13 +23,41 @@ public class FABRIK : MonoBehaviour
     {
         if (transform.gameObject.GetComponent<FABRIKEffector>() == null)
         {
-            transform.gameObject.AddComponent<FABRIKEffector>();
+            FABRIKEffector effector = transform.gameObject.AddComponent<FABRIKEffector>();
+
+            if(transform.parent != null)
+            {
+                effector.forwardAxisConstraint = transform.localPosition;
+                effector.upAxisConstraint = Vector3.up;
+            }
 
             Debug.Log(transform.gameObject.name + ": FABRIKEffector added.");
         }
         else
         {
             Debug.Log(transform.gameObject.name + ": FABRIKEffector already exists!");
+        }
+        
+        if (transform.childCount == 0 && !transform.gameObject.name.Contains("_end_effector"))
+        {
+            GameObject gameObject = new GameObject(transform.gameObject.name + "_end_effector");
+
+            gameObject.transform.parent = transform;
+
+            MeshFilter meshFilter = transform.gameObject.GetComponent<MeshFilter>();
+
+            if (meshFilter != null)
+            {
+                Bounds bounds = meshFilter.mesh.bounds;
+
+                gameObject.transform.localPosition = bounds.center + bounds.extents;
+            }
+            else
+            {
+                gameObject.transform.localPosition = Vector3.forward;
+            }
+
+            Debug.Log(transform.gameObject.name + ": end effector added as " + gameObject.name);
         }
 
         foreach (Transform child in transform)
