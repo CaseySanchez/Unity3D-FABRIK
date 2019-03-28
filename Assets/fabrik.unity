@@ -113,6 +113,197 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &11081883
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 11081884}
+  - component: {fileID: 11081885}
+  m_Layer: 0
+  m_Name: right_end_effector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &11081884
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 11081883}
+  m_LocalRotation: {x: -0, y: -0.38268343, z: -0, w: 0.92387956}
+  m_LocalPosition: {x: -0.014, y: -0.073, z: 0.498}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1233996150}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &11081885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 11081883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260d5a90636da5f4db796b213463cdd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weight: 0
+  upAxisConstraint: {x: 0, y: 1, z: 0}
+  forwardAxisConstraint: {x: 0, y: 0, z: 1}
+  swingConstraint: NaN
+  twistConstraint: NaN
+--- !u!43 &25061441
+Mesh:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Cube Instance
+  serializedVersion: 8
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 36
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 24
+    localAABB:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 0000020003000000030001000800040005000800050009000a00060007000a0007000b000c000d000e000c000e000f00100011001200100012001300140015001600140016001700
+  m_Skin: []
+  m_VertexData:
+    serializedVersion: 2
+    m_VertexCount: 24
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 24
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 40
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 48
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 1344
+    _typelessdata: 0000003f000000bf0000003f00000000000000000000803f000080bf0000000000000000000080bf00000000000000007ee4303f88bfb13e000000bf000000bf0000003f00000000000000000000803f000080bf0000000000000000000080bf0000803f00000000fc247f3f88bfb13e0000003f0000003f0000003f00000000000000000000803f000080bf0000000000000000000080bf000000000000803f7ee4303f4020273f000000bf0000003f0000003f00000000000000000000803f000080bf0000000000000000000080bf0000803f0000803ffc247f3f4020273f0000003f0000003f000000bf000000000000803f00000000000080bf0000000000000000000080bf000000000000803f94949e3e83bfb13e000000bf0000003f000000bf000000000000803f00000000000080bf0000000000000000000080bf0000803f0000803f3ce6843b83bfb13e0000003f000000bf000000bf0000000000000000000080bf000080bf0000000000000000000080bf000000000000803f83bfb13e4020273f000000bf000000bf000000bf0000000000000000000080bf000080bf0000000000000000000080bf0000803f0000803f4020273f4020273f0000003f0000003f0000003f000000000000803f00000000000080bf0000000000000000000080bf000000000000000094949e3e4020273f000000bf0000003f0000003f000000000000803f00000000000080bf0000000000000000000080bf0000803f000000003ce6843b4020273f0000003f0000003f000000bf0000000000000000000080bf000080bf0000000000000000000080bf000000000000000083bfb13e83bfb13e000000bf0000003f000000bf0000000000000000000080bf000080bf0000000000000000000080bf0000803f000000004020273f83bfb13e0000003f000000bf000000bf00000000000080bf00000000000080bf0000000000000000000080bf000000000000000083bfb13e3ce6843b0000003f000000bf0000003f00000000000080bf00000000000080bf0000000000000000000080bf000000000000803f83bfb13e94949e3e000000bf000000bf0000003f00000000000080bf00000000000080bf0000000000000000000080bf0000803f0000803f4020273f94949e3e000000bf000000bf000000bf00000000000080bf00000000000080bf0000000000000000000080bf0000803f000000004020273f3ce6843b000000bf000000bf0000003f000080bf00000000000000000000000000000000000080bf000080bf0000000000000000b8b5303f94949e3e000000bf0000003f0000003f000080bf00000000000000000000000000000000000080bf000080bf000000000000803f34f67e3f94949e3e000000bf0000003f000000bf000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f34f67e3f3ce6843b000000bf000000bf000000bf000080bf00000000000000000000000000000000000080bf000080bf0000803f00000000b8b5303f3ce6843b0000003f000000bf000000bf0000803f000000000000000000000000000000000000803f000080bf000000000000000094949e3e3ce6843b0000003f0000003f000000bf0000803f000000000000000000000000000000000000803f000080bf000000000000803f3ce6843b3ce6843b0000003f0000003f0000003f0000803f000000000000000000000000000000000000803f000080bf0000803f0000803f3ce6843b94949e3e0000003f000000bf0000003f0000803f000000000000000000000000000000000000803f000080bf0000803f0000000094949e3e94949e3e
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+  m_MeshUsageFlags: 0
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshOptimized: 0
 --- !u!1 &67222988
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,10 +349,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
-  axisConstraint: {x: -0.7372046, y: 0, z: 0.67566955}
-  swingConstraint: 30
-  twistConstraint: NaN
-  offset: {x: 0, y: 0, z: 0}
+  upAxisConstraint: {x: 0, y: 1, z: 0}
+  forwardAxisConstraint: {x: 0, y: 0, z: 1}
+  swingConstraint: 90
+  twistConstraint: 0
 --- !u!136 &67222991
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -263,10 +454,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
-  axisConstraint: {x: 0.03748866, y: 0, z: 0.9992971}
+  upAxisConstraint: {x: 0, y: 1, z: 0}
+  forwardAxisConstraint: {x: 0, y: 0, z: 1}
   swingConstraint: 30
   twistConstraint: 0
-  offset: {x: 0, y: 1, z: 0}
 --- !u!136 &162617514
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -405,7 +596,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &311748831
 GameObject:
@@ -526,10 +717,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
-  axisConstraint: {x: 0, y: 0, z: 1}
+  upAxisConstraint: {x: 0, y: 1, z: 0}
+  forwardAxisConstraint: {x: 0, y: 0, z: 1}
   swingConstraint: NaN
   twistConstraint: NaN
-  offset: {x: 0, y: 0, z: 0}
 --- !u!114 &314727115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,7 +801,7 @@ Transform:
   m_Children:
   - {fileID: 1412007854}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &348246997
 GameObject:
@@ -640,7 +831,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 657708080}
   m_Father: {fileID: 629190908}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -656,10 +848,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
-  axisConstraint: {x: -0.7479273, y: 0, z: 0.6637807}
-  swingConstraint: 30
+  upAxisConstraint: {x: 0, y: 1, z: 0}
+  forwardAxisConstraint: {x: 0.7501516, y: 0, z: 0.661266}
+  swingConstraint: 90
   twistConstraint: 0
-  offset: {x: 0, y: 1, z: 0}
 --- !u!136 &348247000
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -714,7 +906,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 348246997}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 1042240978}
 --- !u!1 &516196834
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,10 +952,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
-  axisConstraint: {x: -0.70216095, y: 0, z: 0.71201825}
-  swingConstraint: 30
-  twistConstraint: NaN
-  offset: {x: 0, y: 0, z: 0}
+  upAxisConstraint: {x: 0, y: 1, z: 0}
+  forwardAxisConstraint: {x: 0, y: 0, z: 1}
+  swingConstraint: 90
+  twistConstraint: 0
 --- !u!136 &516196837
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -864,10 +1056,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
-  axisConstraint: {x: -0.70358866, y: 0, z: 0.71060747}
-  swingConstraint: 30
-  twistConstraint: NaN
-  offset: {x: 0, y: 0, z: 0}
+  upAxisConstraint: {x: 0, y: 1, z: 0}
+  forwardAxisConstraint: {x: 0, y: 0, z: 1}
+  swingConstraint: 90
+  twistConstraint: 0
 --- !u!136 &629190910
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -923,6 +1115,51 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 629190907}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &657708079
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 657708080}
+  - component: {fileID: 657708081}
+  m_Layer: 0
+  m_Name: left_end_effector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &657708080
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 657708079}
+  m_LocalRotation: {x: -0, y: 0.38268343, z: -0, w: 0.92387956}
+  m_LocalPosition: {x: -0.018, y: 0.034, z: 0.54}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 348246998}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &657708081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 657708079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260d5a90636da5f4db796b213463cdd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weight: 1
+  upAxisConstraint: {x: 0, y: 1, z: 0}
+  forwardAxisConstraint: {x: 0, y: 0, z: 1}
+  swingConstraint: NaN
+  twistConstraint: NaN
 --- !u!1 &856272875
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,10 +1205,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
-  axisConstraint: {x: -0.670504, y: 0, z: 0.7419059}
-  swingConstraint: 30
-  twistConstraint: NaN
-  offset: {x: 0, y: 0, z: 0}
+  upAxisConstraint: {x: 0, y: 1, z: 0}
+  forwardAxisConstraint: {x: 0, y: 0, z: 1}
+  swingConstraint: 90
+  twistConstraint: 0
 --- !u!136 &856272878
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1072,10 +1309,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
-  axisConstraint: {x: 0.6952707, y: 0, z: 0.718748}
-  swingConstraint: 30
+  upAxisConstraint: {x: 0, y: 1, z: 0}
+  forwardAxisConstraint: {x: 0, y: 0, z: 1}
+  swingConstraint: NaN
   twistConstraint: NaN
-  offset: {x: 0, y: 0, z: 0}
 --- !u!136 &872920009
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1176,10 +1413,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
-  axisConstraint: {x: 0, y: 0, z: 1}
+  upAxisConstraint: {x: 0, y: 1, z: 0}
+  forwardAxisConstraint: {x: 0, y: 0, z: 1}
   swingConstraint: 30
-  twistConstraint: NaN
-  offset: {x: 0, y: 0, z: 0}
+  twistConstraint: 0
 --- !u!136 &880957660
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1316,6 +1553,152 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!43 &1042240978
+Mesh:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Cube Instance
+  serializedVersion: 8
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 36
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 24
+    localAABB:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 0000020003000000030001000800040005000800050009000a00060007000a0007000b000c000d000e000c000e000f00100011001200100012001300140015001600140016001700
+  m_Skin: []
+  m_VertexData:
+    serializedVersion: 2
+    m_VertexCount: 24
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 24
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 40
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 48
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 1344
+    _typelessdata: 0000003f000000bf0000003f00000000000000000000803f000080bf0000000000000000000080bf00000000000000007ee4303f88bfb13e000000bf000000bf0000003f00000000000000000000803f000080bf0000000000000000000080bf0000803f00000000fc247f3f88bfb13e0000003f0000003f0000003f00000000000000000000803f000080bf0000000000000000000080bf000000000000803f7ee4303f4020273f000000bf0000003f0000003f00000000000000000000803f000080bf0000000000000000000080bf0000803f0000803ffc247f3f4020273f0000003f0000003f000000bf000000000000803f00000000000080bf0000000000000000000080bf000000000000803f94949e3e83bfb13e000000bf0000003f000000bf000000000000803f00000000000080bf0000000000000000000080bf0000803f0000803f3ce6843b83bfb13e0000003f000000bf000000bf0000000000000000000080bf000080bf0000000000000000000080bf000000000000803f83bfb13e4020273f000000bf000000bf000000bf0000000000000000000080bf000080bf0000000000000000000080bf0000803f0000803f4020273f4020273f0000003f0000003f0000003f000000000000803f00000000000080bf0000000000000000000080bf000000000000000094949e3e4020273f000000bf0000003f0000003f000000000000803f00000000000080bf0000000000000000000080bf0000803f000000003ce6843b4020273f0000003f0000003f000000bf0000000000000000000080bf000080bf0000000000000000000080bf000000000000000083bfb13e83bfb13e000000bf0000003f000000bf0000000000000000000080bf000080bf0000000000000000000080bf0000803f000000004020273f83bfb13e0000003f000000bf000000bf00000000000080bf00000000000080bf0000000000000000000080bf000000000000000083bfb13e3ce6843b0000003f000000bf0000003f00000000000080bf00000000000080bf0000000000000000000080bf000000000000803f83bfb13e94949e3e000000bf000000bf0000003f00000000000080bf00000000000080bf0000000000000000000080bf0000803f0000803f4020273f94949e3e000000bf000000bf000000bf00000000000080bf00000000000080bf0000000000000000000080bf0000803f000000004020273f3ce6843b000000bf000000bf0000003f000080bf00000000000000000000000000000000000080bf000080bf0000000000000000b8b5303f94949e3e000000bf0000003f0000003f000080bf00000000000000000000000000000000000080bf000080bf000000000000803f34f67e3f94949e3e000000bf0000003f000000bf000080bf00000000000000000000000000000000000080bf000080bf0000803f0000803f34f67e3f3ce6843b000000bf000000bf000000bf000080bf00000000000000000000000000000000000080bf000080bf0000803f00000000b8b5303f3ce6843b0000003f000000bf000000bf0000803f000000000000000000000000000000000000803f000080bf000000000000000094949e3e3ce6843b0000003f0000003f000000bf0000803f000000000000000000000000000000000000803f000080bf000000000000803f3ce6843b3ce6843b0000003f0000003f0000003f0000803f000000000000000000000000000000000000803f000080bf0000803f0000803f3ce6843b94949e3e0000003f000000bf0000003f0000803f000000000000000000000000000000000000803f000080bf0000803f0000000094949e3e94949e3e
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+  m_MeshUsageFlags: 0
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshOptimized: 0
 --- !u!1 &1046734249
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,10 +1744,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
-  axisConstraint: {x: -0.7233445, y: 0, z: 0.69048727}
-  swingConstraint: 30
-  twistConstraint: NaN
-  offset: {x: 0, y: 0, z: 0}
+  upAxisConstraint: {x: 0, y: 1, z: 0}
+  forwardAxisConstraint: {x: 0, y: 0, z: 1}
+  swingConstraint: 90
+  twistConstraint: 0
 --- !u!136 &1046734252
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1465,10 +1848,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
-  axisConstraint: {x: -0.6892254, y: 0, z: 0.724547}
-  swingConstraint: 30
+  upAxisConstraint: {x: 0, y: 1, z: 0}
+  forwardAxisConstraint: {x: 0, y: 0, z: 1}
+  swingConstraint: 90
   twistConstraint: NaN
-  offset: {x: 0, y: 0, z: 0}
 --- !u!136 &1089172348
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1552,7 +1935,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 11081884}
   m_Father: {fileID: 1933328960}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1567,11 +1951,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 260d5a90636da5f4db796b213463cdd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 1
-  axisConstraint: {x: 0.72207737, y: 0, z: 0.69181234}
-  swingConstraint: 30
-  twistConstraint: 0
-  offset: {x: 0, y: 1, z: 0}
+  weight: 0
+  upAxisConstraint: {x: 0, y: 1, z: 0}
+  forwardAxisConstraint: {x: 0, y: 0, z: 1}
+  swingConstraint: NaN
+  twistConstraint: NaN
 --- !u!136 &1233996152
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1626,7 +2010,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1233996149}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 25061441}
 --- !u!1 &1236827844
 GameObject:
   m_ObjectHideFlags: 0
@@ -1672,10 +2056,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
-  axisConstraint: {x: 0.7086776, y: 0, z: 0.7055325}
-  swingConstraint: 30
+  upAxisConstraint: {x: 0, y: 1, z: 0}
+  forwardAxisConstraint: {x: 0, y: 0, z: 1}
+  swingConstraint: NaN
   twistConstraint: NaN
-  offset: {x: 0, y: 0, z: 0}
 --- !u!136 &1236827847
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1776,10 +2160,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
-  axisConstraint: {x: 0.72475994, y: 0, z: 0.68900144}
-  swingConstraint: 30
+  upAxisConstraint: {x: 0, y: 1, z: 0}
+  forwardAxisConstraint: {x: 0, y: 0, z: 1}
+  swingConstraint: NaN
   twistConstraint: NaN
-  offset: {x: 0, y: 0, z: 0}
 --- !u!136 &1389608799
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1880,10 +2264,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
-  axisConstraint: {x: 0, y: 0, z: 1}
-  swingConstraint: NaN
-  twistConstraint: NaN
-  offset: {x: 0, y: 0, z: 0}
+  upAxisConstraint: {x: 0, y: 1, z: 0}
+  forwardAxisConstraint: {x: 0, y: 0, z: 1}
+  swingConstraint: 30
+  twistConstraint: 0
 --- !u!136 &1412007856
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2134,10 +2518,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
-  axisConstraint: {x: 0.6946312, y: 0, z: 0.7193661}
-  swingConstraint: 30
+  upAxisConstraint: {x: 0, y: 1, z: 0}
+  forwardAxisConstraint: {x: 0, y: 0, z: 1}
+  swingConstraint: NaN
   twistConstraint: NaN
-  offset: {x: 0, y: 0, z: 0}
 --- !u!136 &1792888938
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2238,10 +2622,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
-  axisConstraint: {x: 0, y: 0, z: 1}
+  upAxisConstraint: {x: 0, y: 1, z: 0}
+  forwardAxisConstraint: {x: 0, y: 0, z: 1}
   swingConstraint: 30
-  twistConstraint: NaN
-  offset: {x: 0, y: 0, z: 0}
+  twistConstraint: 0
 --- !u!136 &1898471334
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2342,10 +2726,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
-  axisConstraint: {x: 0, y: 0, z: 1}
+  upAxisConstraint: {x: 0, y: 1, z: 0}
+  forwardAxisConstraint: {x: 0, y: 0, z: 1}
   swingConstraint: 30
-  twistConstraint: NaN
-  offset: {x: 0, y: 0, z: 0}
+  twistConstraint: 0
 --- !u!136 &1908168544
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2446,10 +2830,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
-  axisConstraint: {x: 0, y: 0, z: 1}
+  upAxisConstraint: {x: 0, y: 1, z: 0}
+  forwardAxisConstraint: {x: 0, y: 0, z: 1}
   swingConstraint: 30
-  twistConstraint: NaN
-  offset: {x: 0, y: 0, z: 0}
+  twistConstraint: 0
 --- !u!136 &1917541808
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2550,10 +2934,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
-  axisConstraint: {x: 0.7087416, y: 0, z: 0.7054682}
-  swingConstraint: 30
+  upAxisConstraint: {x: 0, y: 1, z: 0}
+  forwardAxisConstraint: {x: 0, y: 0, z: 1}
+  swingConstraint: NaN
   twistConstraint: NaN
-  offset: {x: 0, y: 0, z: 0}
 --- !u!136 &1933328962
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2654,10 +3038,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
-  axisConstraint: {x: 0.70755255, y: 0, z: 0.70666075}
-  swingConstraint: 30
+  upAxisConstraint: {x: 0, y: 1, z: 0}
+  forwardAxisConstraint: {x: 0, y: 0, z: 1}
+  swingConstraint: NaN
   twistConstraint: NaN
-  offset: {x: 0, y: 0, z: 0}
 --- !u!136 &2078399164
 CapsuleCollider:
   m_ObjectHideFlags: 0
